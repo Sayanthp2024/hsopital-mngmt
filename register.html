@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Register Patient</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        .form-section {
+            background-color: #f8fafc;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 6px;
+            color: #2a4d69;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .sql-section {
+            background-color: #f4f4f4;
+            padding: 24px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.95em;
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            color: #1d3557;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .back-link {
+            margin-top: 30px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Patient Registration</h1>
+            <p>Please complete the form below to register a new patient. All fields are required.</p>
+        </header>
+
+        <section class="form-section">
+            <form>
+                <div class="form-group">
+                    <label for="patientId">Patient ID</label>
+                    <input type="number" id="patientId" name="patientId" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob" name="dob" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea id="address" name="address" rows="3" required></textarea>
+                </div>
+
+                <button class="btn" type="submit">Register Patient</button>
+            </form>
+        </section>
+
+      
+        <a href="index.html" class="btn back-link">← Back to Dashboard</a>
+    </div>
+</body>
+</html>
