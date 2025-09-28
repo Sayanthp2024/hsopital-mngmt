@@ -1,149 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>View Billing</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <style>
+  <meta charset="UTF-8" />
+  <title>Patient Billing</title>
+  <style>
     :root {
-        --primary: #2a4d69;
-        --hover: #1d3557;
-        --bg-light: #f4f8fb;
-        --card-bg: #f8fafc;
-        --text: #555;
-        --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      --primary: #2a4d69;
+      --hover: #1d3557;
+      --bg-light: #f4f8fb;
+      --card-bg: #f8fafc;
+      --text: #555;
+      --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-
     body {
-        margin: 0;
-        padding: 0;
-        background-color: var(--bg-light);
-        font-family: var(--font);
-        color: var(--text);
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-light);
+      font-family: var(--font);
+      color: var(--text);
     }
-
     .container {
-        max-width: 960px;
-        margin: 60px auto;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        padding: 50px 40px;
+      max-width: 600px;
+      margin: 60px auto;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      padding: 40px 30px;
     }
-
-    header h1 {
-        font-size: 2em;
-        color: var(--primary);
-        margin-bottom: 10px;
+    h1 {
+      font-size: 1.8em;
+      color: var(--primary);
+      margin-bottom: 10px;
     }
-
-    header p {
-        font-size: 1.1em;
-        line-height: 1.6;
-        margin-bottom: 30px;
+    p {
+      margin-bottom: 30px;
+      color: #666;
     }
-
-    .btn {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: var(--primary);
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        font-size: 0.95em;
-        text-decoration: none;
-        transition: background-color 0.3s ease;
-        cursor: pointer;
-    }
-
-    .btn:hover {
-        background-color: var(--hover);
-    }
-
-    .form-section {
-        background-color: var(--card-bg);
-        padding: 30px;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        margin-bottom: 40px;
-    }
-
     .form-group {
-        margin-bottom: 20px;
+      margin-bottom: 20px;
     }
-
     label {
-        font-weight: 600;
-        display: block;
-        margin-bottom: 6px;
-        color: var(--primary);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 6px;
+      color: var(--primary);
     }
-
-    input, textarea, select {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 1em;
-        box-sizing: border-box;
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
     }
-
-    textarea {
-        resize: vertical;
+    .btn {
+      padding: 10px 20px;
+      background-color: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
-
-    .section-title {
-        font-size: 1.3em;
-        color: #1d3557;
-        margin-bottom: 10px;
-        font-weight: 600;
+    .btn:hover {
+      background-color: var(--hover);
     }
-
-    .back-link {
-        margin-top: 30px;
-        display: inline-block;
+    .btn-secondary {
+      margin-top: 20px;
+      display: inline-block;
+      text-decoration: none;
+      background-color: #ccc;
+      color: #000;
+      padding: 8px 16px;
+      border-radius: 4px;
     }
-
+    .bill-summary {
+      margin-top: 30px;
+      background-color: var(--card-bg);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .bill-summary h3 {
+      margin-bottom: 15px;
+      color: var(--hover);
+    }
+    .bill-line {
+      margin-bottom: 10px;
+      font-size: 1em;
+    }
+    .highlight {
+      font-weight: bold;
+      color: #333;
+    }
     @media (max-width: 600px) {
-        .container {
-            padding: 30px 20px;
-        }
-
-        header h1 {
-            font-size: 1.6em;
-        }
+      .container {
+        padding: 30px 20px;
+      }
+      h1 {
+        font-size: 1.5em;
+      }
     }
-</style>
-
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>View Billing</h1>
-            <p>Review and manage billing records.</p>
-        </header>
+  <div class="container">
+    <h1>Patient Billing</h1>
+    <p>Enter billing details to automatically generate a detailed bill summary below.</p>
 
-        <form>
-            <label>Patient ID:</label><br />
-            <input type="text" required /><br /><br />
+    <form id="billingForm">
+      <div class="form-group">
+        <label for="patientId">Patient ID</label>
+        <input type="text" id="patientId" placeholder="e.g., P12345" required />
+      </div>
 
-            <label>Billing Date:</label><br />
-            <input type="date" /><br /><br />
+      <div class="form-group">
+        <label for="billingDate">Billing Date</label>
+        <input type="date" id="billingDate" required />
+      </div>
 
-            <label>Amount:</label><br />
-            <input type="number" placeholder="₹" /><br /><br />
+      <div class="form-group">
+        <label for="consultationFee">Doctor Consultation Fee (₹)</label>
+        <input type="number" id="consultationFee" placeholder="e.g., 500" min="0" value="0" required />
+      </div>
 
-            <label>Status:</label><br />
-            <select>
-                <option>Paid</option>
-                <option>Pending</option>
-            </select><br /><br />
+      <div class="form-group">
+        <label for="roomCharge">Room Charge (₹)</label>
+        <input type="number" id="roomCharge" placeholder="e.g., 1000" min="0" value="0" required />
+      </div>
 
-            <button class="btn" type="submit">Update Billing</button>
-        </form>
+      <div class="form-group">
+        <label for="medicationCharge">Medication Charge (₹)</label>
+        <input type="number" id="medicationCharge" placeholder="e.g., 300" min="0" value="0" required />
+      </div>
 
-        <br />
-        <a href="index.html" class="btn">Back to Dashboard</a>
+      <button class="btn" type="submit">Save Billing</button>
+    </form>
+
+    <!-- Bill Summary -->
+    <div class="bill-summary" id="billSummary" style="display: none;">
+      <h3>Billing Summary</h3>
+      <div class="bill-line"><span class="highlight">Patient ID:</span> <span id="summaryPatientId"></span></div>
+      <div class="bill-line"><span class="highlight">Billing Date:</span> <span id="summaryDate"></span></div>
+
+      <div class="bill-line"><span class="highlight">Doctor Consultation Fee:</span> ₹<span id="summaryConsultationFee"></span></div>
+      <div class="bill-line"><span class="highlight">Room Charge:</span> ₹<span id="summaryRoomCharge"></span></div>
+      <div class="bill-line"><span class="highlight">Medication Charge:</span> ₹<span id="summaryMedicationCharge"></span></div>
+      <hr />
+      <div class="bill-line"><span class="highlight">Total Amount:</span> ₹<span id="summaryTotalAmount"></span></div>
     </div>
+
+    <a href="index.html" class="btn-secondary">Back to Dashboard</a>
+  </div>
+
+  <script>
+    const form = document.getElementById("billingForm");
+    const billSummary = document.getElementById("billSummary");
+
+    const summaryPatientId = document.getElementById("summaryPatientId");
+    const summaryDate = document.getElementById("summaryDate");
+    const summaryConsultationFee = document.getElementById("summaryConsultationFee");
+    const summaryRoomCharge = document.getElementById("summaryRoomCharge");
+    const summaryMedicationCharge = document.getElementById("summaryMedicationCharge");
+    const summaryTotalAmount = document.getElementById("summaryTotalAmount");
+
+    function updateSummary() {
+      const patientId = document.getElementById("patientId").value.trim();
+      const billingDate = document.getElementById("billingDate").value;
+      const consultationFee = parseFloat(document.getElementById("consultationFee").value) || 0;
+      const roomCharge = parseFloat(document.getElementById("roomCharge").value) || 0;
+      const medicationCharge = parseFloat(document.getElementById("medicationCharge").value) || 0;
+
+      const totalAmount = consultationFee + roomCharge + medicationCharge;
+
+      if (patientId && billingDate) {
+        summaryPatientId.textContent = patientId;
+        summaryDate.textContent = billingDate;
+
+        summaryConsultationFee.textContent = consultationFee.toFixed(2);
+        summaryRoomCharge.textContent = roomCharge.toFixed(2);
+        summaryMedicationCharge.textContent = medicationCharge.toFixed(2);
+        summaryTotalAmount.textContent = totalAmount.toFixed(2);
+
+        billSummary.style.display = "block";
+      } else {
+        billSummary.style.display = "none";
+      }
+    }
+
+    ['input', 'change'].forEach(evt =>
+      form.addEventListener(evt, updateSummary)
+    );
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("Billing saved successfully!");
+      form.reset();
+      billSummary.style.display = "none";
+    });
+  </script>
 </body>
 </html>
