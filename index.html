@@ -1,162 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hospital Management Dashboard</title>
-    <style>
-        :root {
-            --primary: #2a4d69;
-            --hover: #1d3557;
-            --bg-light: #f4f8fb;
-            --card-bg: #f8fafc;
-            --text: #555;
-            --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hospital Management Dashboard</title>
+  <style>
+    :root {
+      --primary: #2a4d69;
+      --hover: #1d3557;
+      --bg-light: #f4f8fb;
+      --card-bg: #f8fafc;
+      --text: #555;
+      --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-light);
-            font-family: var(--font);
-            color: var(--text);
-        }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-light);
+      font-family: var(--font);
+      color: var(--text);
+    }
 
-        .container {
-            max-width: 960px;
-            margin: 60px auto;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            padding: 50px 40px;
-        }
+    .container {
+      max-width: 960px;
+      margin: 60px auto;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      padding: 50px 40px;
+    }
 
-        header h1 {
-            font-size: 2em;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
 
-        header p {
-            font-size: 1.1em;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
+    header h1 {
+      font-size: 2em;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
 
-        .card-group {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 24px;
-        }
+    header p {
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
 
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-            padding: 24px 20px;
-            text-align: center;
-            transition: transform 0.2s ease;
-        }
+    /* Updated grid layout */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      justify-items: center;
+    }
 
-        .card:hover {
-            transform: translateY(-4px);
-        }
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      padding: 24px 20px;
+      text-align: center;
+      transition: transform 0.2s ease;
+      width: 100%;
+      max-width: 100%;
+    }
 
-        .card-title {
-            font-size: 1.3em;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 12px;
-        }
+    .card:hover {
+      transform: translateY(-4px);
+    }
 
-        .card-text {
-            font-size: 1em;
-            margin-bottom: 20px;
-        }
+    .card-title {
+      font-size: 1.3em;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
 
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: var(--primary);
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            font-size: 0.95em;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
+    .card-text {
+      font-size: 1em;
+      margin-bottom: 20px;
+    }
 
-        .btn:hover {
-            background-color: var(--hover);
-        }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.95em;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
 
-        .center-card {
-            display: flex;
-            justify-content: center;
-            margin-top: 24px;
-        }
+    .btn:hover {
+      background-color: var(--hover);
+    }
 
-        @media (max-width: 600px) {
-            .container {
-                padding: 30px 20px;
-            }
+    /* Center card spanning both columns */
+    .center-card {
+      grid-column: span 2;
+      max-width: 400px;
+      width: 100%;
+      margin: 0 auto;
+    }
 
-            header h1 {
-                font-size: 1.6em;
-            }
+    @media (max-width: 600px) {
+      .container {
+        padding: 30px 20px;
+      }
 
-            .card {
-                padding: 20px 16px;
-            }
+      header h1 {
+        font-size: 1.6em;
+      }
 
-            .center-card {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
+      .card {
+        padding: 20px 16px;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .center-card {
+        grid-column: auto;
+        max-width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Hospital Dashboard</h1>
-            <p>Welcome to the Patient-Centric Hospital Management System. Use the dashboard below to manage key operations efficiently.</p>
-        </header>
+  <div class="container">
+    <header>
+      <h1>Hospital Dashboard</h1>
+      <p>
+        Welcome to the Patient-Centric Hospital Management System. Use the dashboard below to manage key operations efficiently.
+      </p>
+    </header>
 
-        <section class="card-group">
-            <article class="card">
-                <h2 class="card-title">Register Patient</h2>
-                <p class="card-text">Enroll new patients and maintain comprehensive profiles with ease.</p>
-                <a href="register.html" class="btn">Register Patient</a>
-            </article>
+    <section class="card-grid">
+      <!-- Top Row -->
+      <article class="card">
+        <h2 class="card-title">Register Patient</h2>
+        <p class="card-text">Enroll new patients and maintain comprehensive profiles with ease.</p>
+        <a href="register.html" class="btn">Register Patient</a>
+      </article>
 
-            <article class="card">
-                <h2 class="card-title">Manage Appointments</h2>
-                <p class="card-text">Schedule, view, and manage appointments across departments.</p>
-                <a href="appointment.html" class="btn">Manage Appointments</a>
-            </article>
+      <article class="card">
+        <h2 class="card-title">Manage Appointments</h2>
+        <p class="card-text">Schedule, view, and manage appointments across departments.</p>
+        <a href="appointment.html" class="btn">Manage Appointments</a>
+      </article>
 
-            <article class="card">
-                <h2 class="card-title">Consultation Portal</h2>
-                <p class="card-text">Coordinate consultations and monitor patient-doctor interactions.</p>
-                <a href="consultation.html" class="btn">Consultation Portal</a>
-            </article>
+      <!-- Middle Centered Card -->
+      <article class="card center-card">
+        <h2 class="card-title">Consultation Portal</h2>
+        <p class="card-text">Coordinate consultations and monitor patient-doctor interactions.</p>
+        <a href="consultation.html" class="btn">Consultation Portal</a>
+      </article>
 
-            <article class="card">
-                <h2 class="card-title">Order Lab Test</h2>
-                <p class="card-text">Request diagnostic tests and track lab results efficiently.</p>
-                <a href="labtest.html" class="btn">Order Lab Test</a>
-            </article>
-        </section>
+      <!-- Bottom Row -->
+      <article class="card">
+        <h2 class="card-title">Order Lab Test</h2>
+        <p class="card-text">Request diagnostic tests and track lab results efficiently.</p>
+        <a href="labtest.html" class="btn">Order Lab Test</a>
+      </article>
 
-        <!-- Centered Billing Card -->
-        <div class="center-card">
-            <article class="card">
-                <h2 class="card-title">View Billing</h2>
-                <p class="card-text">Generate invoices, process payments, and manage financial records securely.</p>
-                <a href="billing.html" class="btn">View Billing</a>
-            </article>
-        </div>
-    </div>
+      <article class="card">
+        <h2 class="card-title">View Billing</h2>
+        <p class="card-text">Generate invoices, process payments, and manage financial records securely.</p>
+        <a href="billing.html" class="btn">View Billing</a>
+      </article>
+    </section>
+  </div>
 </body>
 </html>
