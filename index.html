@@ -8,9 +8,9 @@
     :root {
       --primary: #2a4d69;
       --hover: #1d3557;
-      --bg-light: #f4f8fb;
-      --card-bg: #f8fafc;
-      --text: #555;
+      --bg-light: #e3eef7; /* Changed from #f4f8fb to a blue-tinted light color */
+      --card-bg: #ffffff;
+      --text: #1d3557;
       --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
@@ -26,53 +26,65 @@
       max-width: 960px;
       margin: 60px auto;
       background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      padding: 50px 40px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(42, 77, 105, 0.08); /* Changed shadow to use primary color */
+      overflow: hidden;
     }
 
     header {
       text-align: center;
-      margin-bottom: 40px;
+      padding: 50px 20px 40px;
+      background-image: linear-gradient(rgba(42, 77, 105, 0.45), rgba(42, 77, 105, 0.45)),
+        url('https://images.unsplash.com/photo-1588776814546-ec8b9a2085d8?auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+    }
+
+    .logo {
+      height: 70px;
+      margin-bottom: 20px;
     }
 
     header h1 {
-      font-size: 2em;
-      color: var(--primary);
-      margin-bottom: 10px;
+      font-size: 2.4em;
+      margin: 10px 0;
+      text-shadow: 1px 1px 4px rgba(42, 77, 105, 0.5); /* Changed shadow to use primary color */
     }
 
     header p {
       font-size: 1.1em;
+      max-width: 700px;
+      margin: 0 auto;
       line-height: 1.6;
+      text-shadow: 1px 1px 2px rgba(42, 77, 105, 0.4); /* Changed shadow to use primary color */
     }
 
-    /* Updated grid layout */
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 24px;
-      justify-items: center;
+      padding: 40px 30px;
+      background-color: #fff;
     }
 
     .card {
       background-color: var(--card-bg);
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(42, 77, 105, 0.10); /* Changed shadow to use primary color */
       padding: 24px 20px;
       text-align: center;
-      transition: transform 0.2s ease;
-      width: 100%;
-      max-width: 100%;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
     .card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-6px);
+      box-shadow: 0 8px 24px rgba(42, 77, 105, 0.16); /* Changed shadow to use primary color */
     }
 
     .card-title {
-      font-size: 1.3em;
-      font-weight: 600;
+      font-size: 1.25em;
+      font-weight: bold;
       color: var(--primary);
       margin-bottom: 12px;
     }
@@ -80,6 +92,7 @@
     .card-text {
       font-size: 1em;
       margin-bottom: 20px;
+      line-height: 1.5;
     }
 
     .btn {
@@ -88,8 +101,9 @@
       background-color: var(--primary);
       color: #fff;
       border: none;
-      border-radius: 4px;
+      border-radius: 6px;
       font-size: 0.95em;
+      font-weight: 500;
       text-decoration: none;
       transition: background-color 0.3s ease;
     }
@@ -98,34 +112,21 @@
       background-color: var(--hover);
     }
 
-    /* Center card spanning both columns */
-    .center-card {
-      grid-column: span 2;
-      max-width: 400px;
-      width: 100%;
-      margin: 0 auto;
-    }
-
     @media (max-width: 600px) {
-      .container {
-        padding: 30px 20px;
-      }
-
       header h1 {
-        font-size: 1.6em;
+        font-size: 1.8em;
       }
 
-      .card {
-        padding: 20px 16px;
+      header p {
+        font-size: 1em;
+      }
+
+      .logo {
+        height: 55px;
       }
 
       .card-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .center-card {
-        grid-column: auto;
-        max-width: 100%;
+        padding: 30px 20px;
       }
     }
   </style>
@@ -133,6 +134,8 @@
 <body>
   <div class="container">
     <header>
+      <!-- ✅ Replace 'logo.png' with your actual logo path -->
+      <img src="logo.jpeg" alt="Company Logo" class="logo" height="1000" width="100" />
       <h1>Hospital Dashboard</h1>
       <p>
         Welcome to the Patient-Centric Hospital Management System. Use the dashboard below to manage key operations efficiently.
@@ -140,7 +143,6 @@
     </header>
 
     <section class="card-grid">
-      <!-- Top Row -->
       <article class="card">
         <h2 class="card-title">Register Patient</h2>
         <p class="card-text">Enroll new patients and maintain comprehensive profiles with ease.</p>
@@ -153,14 +155,12 @@
         <a href="appointment.html" class="btn">Manage Appointments</a>
       </article>
 
-      <!-- Middle Centered Card -->
-      <article class="card center-card">
+      <article class="card">
         <h2 class="card-title">Consultation Portal</h2>
         <p class="card-text">Coordinate consultations and monitor patient-doctor interactions.</p>
-        <a href="consultation.html" class="btn">Consultation Portal</a>
+        <a href="consultation.html" class="btn">Go to Consultation</a>
       </article>
 
-      <!-- Bottom Row -->
       <article class="card">
         <h2 class="card-title">Order Lab Test</h2>
         <p class="card-text">Request diagnostic tests and track lab results efficiently.</p>
